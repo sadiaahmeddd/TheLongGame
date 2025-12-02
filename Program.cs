@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO; // Needed for reading and writing files
+using System.IO; // reading and writing files
 
 namespace TheLongGame
 {
@@ -11,13 +11,15 @@ namespace TheLongGame
         /// presses Enter to end the game, and the username + score are
         /// saved to and read from a file.
         /// </summary>
+        /// 
+
         static void Main(string[] args)
         {
-            // --- 1. Collect the username from the user and store in a variable ---
+            // --- 1. the username from the user and store in a variable ---
             Console.Write("Enter your username: ");
             string username = Console.ReadLine();
 
-            // Make sure we have *something* as a username
+            // Make sure we hav s a username
             if (string.IsNullOrWhiteSpace(username))
             {
                 username = "UnknownPlayer";
@@ -36,7 +38,7 @@ namespace TheLongGame
             // --- 3. Game loop: increase points on keypress & show updated score ---
             while (true)
             {
-                // Read a single key press without echoing it to the screen
+                // key press 
                 ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
 
                 // If the user presses Enter, we end the game
@@ -60,6 +62,10 @@ namespace TheLongGame
             string filePath = "scores.txt"; // File will live next to the .exe
 
             try
+
+
+
+
             {
                 // Append a new line with "username,score"
                 using (StreamWriter writer = new StreamWriter(filePath, append: true))
@@ -74,6 +80,10 @@ namespace TheLongGame
                 Console.WriteLine("Error while saving to file: " + ex.Message);
             }
 
+
+
+
+
             // --- 5. Read from the file and store data into local variables ---
             try
             {
@@ -86,6 +96,8 @@ namespace TheLongGame
                     while ((line = reader.ReadLine()) != null)
                     {
                         lastLine = line;
+
+
                     }
                 }
 
@@ -100,8 +112,10 @@ namespace TheLongGame
                         string fileUsername = parts[0];
 
                         Console.WriteLine();
+
                         Console.WriteLine("Most recent entry loaded FROM FILE:");
                         Console.WriteLine($"Username: {fileUsername}");
+
                         Console.WriteLine($"Score: {fileScore}");
                     }
                     else
@@ -119,8 +133,15 @@ namespace TheLongGame
                 Console.WriteLine("Error while reading from file: " + ex.Message);
             }
 
+
+
             Console.WriteLine();
+
             Console.WriteLine("Press any key to exit...");
+
+
+
+
             Console.ReadKey();
         }
     }
